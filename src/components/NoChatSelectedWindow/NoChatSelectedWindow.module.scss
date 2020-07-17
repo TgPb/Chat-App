@@ -1,0 +1,25 @@
+$messageColor: rgb(37, 29, 67);
+
+.no-chat-selected-window {
+	width: 70%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+
+	.window {
+		&__img {
+			margin-bottom: 40px;
+		}
+
+		&__message {
+			font-size: 26px;
+			line-height: 1;
+			color: $messageColor;
+			text-align: center;
+			user-select: none;
+		}
+	}
+}
