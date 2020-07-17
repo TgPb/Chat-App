@@ -1,0 +1,41 @@
+$activeBgColor: rgb(31, 26, 62);
+$hoverBgColor: lighten($activeBgColor, 5%);
+
+.chat-preview {
+	width: 100%;
+	height: 90px;
+	padding: 20px;
+	cursor: pointer;
+	flex-shrink: 0;
+	display: flex;
+
+	$preview: &;
+
+	&_active {
+		background-color: $activeBgColor;
+	}
+	&:hover:not(#{$preview}_active) {
+		background-color: $hoverBgColor;
+	}
+
+	.preview__icon {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: #fff;
+		margin-right: 15px;
+		position: relative;
+
+		&::after {
+			position: absolute;
+			display: block;
+			content: '';
+			width: 10px;
+			height: 10px;
+			background-color: #0f0;
+			border-radius: 50%;
+			bottom: 6%;
+			right: 6%;
+		}
+	}
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './ChatsList.module.scss';
+import ChatPreview from "../ChatPreview/ChatPreview.component";
 
 const ChatsList = ({ chats }) => {
     return (
@@ -8,7 +9,7 @@ const ChatsList = ({ chats }) => {
             {
                 chats && chats.length ? (
                     chats.map(
-                        (chat, index) => <div key={index}>chat { index + 1 }</div>
+                        chat => <ChatPreview key={chat} chat={chat} />
                     )
                 ) : (
                     <div className={styles['list__no-chats-warning']}>
