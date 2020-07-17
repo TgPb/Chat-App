@@ -1,8 +1,12 @@
 import React, {useEffect} from 'react';
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
+
 import AuthPage from "./pages/AuthPage/AuthPage.page";
 import ChatsPage from "./pages/ChatsPage/ChatsPage.page";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.page";
+import OnlyForAuthenticated from "./hocs/OnlyForAuthenticated/OnlyForAuthenticated.hoc";
+
+const SecuredChatsPage = OnlyForAuthenticated(ChatsPage);
 
 const App = () => {
     const history = useHistory();
@@ -22,7 +26,7 @@ const App = () => {
                     <AuthPage />
                 </Route>
                 <Route path='/chats'>
-                    <ChatsPage />
+                    <SecuredChatsPage user />
                 </Route>
                 <Route path='*'>
                     <NotFoundPage />

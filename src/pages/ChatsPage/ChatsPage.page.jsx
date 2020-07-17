@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './ChatsPage.module.scss';
+
 import ChatsList from "../../components/ChatsList/ChatsList.component";
 
 const ChatsPage = () => {
