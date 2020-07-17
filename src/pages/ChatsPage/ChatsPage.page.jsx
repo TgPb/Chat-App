@@ -1,13 +1,12 @@
 import React from 'react';
 
 import styles from './ChatsPage.module.scss';
+import ChatsList from "../../components/ChatsList/ChatsList.component";
 
 const ChatsPage = () => {
     return (
         <section className={styles['chats-page']}>
-            <div>
-                Chats Page
-            </div>
+            <ChatsList />
         </section>
     );
 };
