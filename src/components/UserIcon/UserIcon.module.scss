@@ -1,0 +1,10 @@
+$iconBorderColor: #fff;
+
+.user-icon {
+	display: block;
+	background-color: #fff;
+	border-radius: 50%;
+	background-size: cover;
+	background-position: center;
+	border: 1px solid $iconBorderColor;
+}

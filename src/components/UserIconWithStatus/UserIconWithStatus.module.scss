@@ -1,0 +1,17 @@
+$statusColor: #0f0;
+$statusBorderColor: #fff;
+
+.user-icon-with-status {
+	position: relative;
+
+	.icon__status {
+		width: 25%;
+		height: 25%;
+		border-radius: 50%;
+		position: absolute;
+		right: 3%;
+		bottom: 3%;
+		background-color: $statusColor;
+		border: 1px solid $statusBorderColor;
+	}
+}

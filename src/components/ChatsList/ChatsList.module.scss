@@ -1,7 +1,7 @@
 $bgColor: rgb(37, 29, 67);
 
 .chats-list {
-	width: 20%;
+	width: 30%;
 	height: 100%;
 	overflow: auto;
 	background-color: $bgColor;
@@ -9,6 +9,7 @@ $bgColor: rgb(37, 29, 67);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding: 20px 0;
 
 	.list__no-chats-warning {
 		padding: 10px;
