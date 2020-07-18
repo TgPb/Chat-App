@@ -1,0 +1,13 @@
+.chat-control-panel {
+	width: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.splitter {
+		width: 1px;
+		height: 25px;
+		background-color: rgba(37, 29, 67, .3);
+		margin: 0 15px;
+	}
+}

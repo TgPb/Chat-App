@@ -3,12 +3,15 @@ import classNames from 'classnames';
 
 import styles from './UserIcon.module.scss';
 
-const UserIcon = ({ src, size, className }) => {
+const UserIcon = ({ src, size, className, darkBorder }) => {
     const iconStyles = classNames(
         styles['user-icon'],
         {
+            [styles['user-icon_dark-border']]: darkBorder
+        },
+        {
             [className]: className
-        }
+        },
     );
 
     return (

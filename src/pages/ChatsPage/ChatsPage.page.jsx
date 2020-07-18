@@ -6,6 +6,7 @@ import styles from './ChatsPage.module.scss';
 import ChatsList from "../../components/ChatsList/ChatsList.component";
 import NotFoundPage from "../NotFoundPage/NotFoundPage.page";
 import NoChatSelectedWindow from "../../components/NoChatSelectedWindow/NoChatSelectedWindow.component";
+import ChatWindow from "../../components/ChatWindow/ChatWindow.component";
 
 const chats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
@@ -21,7 +22,7 @@ const ChatsPage = () => {
                 <Route exact path={`${path}`}>
                     <NoChatSelectedWindow />
                 </Route>
-                <Route exact path={`${path}/:chatId`} render={({ match: { params: { chatId } } })=><div>Chat { chatId }</div>} />
+                <Route exact path={`${path}/:chatId`} component={ChatWindow} />
                 <Route path='*'>
                     <NotFoundPage />
                 </Route>

@@ -1,4 +1,5 @@
 $iconBorderColor: #fff;
+$darkIconBorderColor: rgba(37, 29, 67, .7);
 
 .user-icon {
 	display: block;
@@ -7,4 +8,8 @@ $iconBorderColor: #fff;
 	background-size: cover;
 	background-position: center;
 	border: 1px solid $iconBorderColor;
+
+	&_dark-border {
+		border-color: $darkIconBorderColor;
+	}
 }
