@@ -1,0 +1,35 @@
+$bubbleBgColor: rgb(65, 53, 115);
+$bubbleTextColor: #fff;
+$mineBubbleBgColor: #fff;
+$mineBubbleTextColor: rgb(65, 53, 115);
+$bubbleVerticalPadding: 10px;
+$bubbleHorizontalPadding: 20px;
+$bubbleFontSize: 14px;
+$bubbleLineHeight: $bubbleFontSize * 1.3;
+$bubbleBorderRadius: ($bubbleVerticalPadding * 2 + $bubbleLineHeight) / 2;
+
+.message-bubble {
+	padding: $bubbleVerticalPadding $bubbleHorizontalPadding;
+	background-color: $bubbleBgColor;
+	border-radius: 0 $bubbleBorderRadius $bubbleBorderRadius $bubbleBorderRadius;
+	box-shadow: 0 0 3px $bubbleBgColor;
+
+	$bubble: &;
+
+	&__text {
+		font-size: $bubbleFontSize;
+		line-height: $bubbleLineHeight;
+		font-weight: 400;
+		color: $bubbleTextColor;
+		white-space: pre-line;
+	}
+
+	&_mine {
+		background-color: $mineBubbleBgColor;
+		border-radius: $bubbleBorderRadius 0 $bubbleBorderRadius $bubbleBorderRadius;
+
+		#{$bubble}__text {
+			color: $mineBubbleTextColor;
+		}
+	}
+}

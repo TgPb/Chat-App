@@ -1,28 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import classNames from 'classnames';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 import styles from './ChatPreviewInfo.module.scss';
 
-const dateFnsConfig = {
-    includeSeconds: true,
-    addSuffix: true
-};
-
-const formatDate = time => formatDistanceToNow(new Date(time), dateFnsConfig);
+import { timeDistanceToNowInWords } from '../../utils/dates';
 
 const ChatPreviewInfo = ({ className, name, lastMessage }) => {
     const { sender, date, text } = lastMessage;
 
-    const [formatedDate, setFormatedDate] = useState(formatDate(date));
+    const [formattedDate, setFormattedDate] = useState(timeDistanceToNowInWords(date));
 
     useEffect(
         () => {
             const interval = setInterval(
                 () => {
-                    setFormatedDate(formatDate(date));
+                    setFormattedDate(timeDistanceToNowInWords(date));
                 },
-                5000
+                1000 * 60
             );
             return () => {
                 clearInterval(interval);
@@ -41,7 +35,7 @@ const ChatPreviewInfo = ({ className, name, lastMessage }) => {
     return (
         <div className={infoStyles}>
             <span className={styles['chat-info__date']}>
-                { formatedDate }
+                { formattedDate }
             </span>
             <span className={styles['chat-info__name']}>
                 { name }

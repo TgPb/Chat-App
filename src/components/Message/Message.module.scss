@@ -1,0 +1,78 @@
+$mainTextColor: rgb(37, 29, 67);
+$dateColor: lighten($mainTextColor, 20%);
+$systemTextColor: lighten($mainTextColor, 10%);
+
+.message {
+	display: flex;
+	max-width: 80%;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin: 7px 0;
+	align-self: flex-start;
+
+	$message: &;
+
+	&__sender-icon {
+		margin-right: 15px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		max-width: calc(100% - 55px);
+
+		.content {
+			&__info {
+				display: flex;
+				align-items: center;
+				margin-bottom: 5px;
+				user-select: none;
+
+				.info {
+					&__date {
+						font-size: 10px;
+						line-height: 1;
+						color: $dateColor;
+					}
+
+					&__sender {
+						font-size: 15px;
+						line-height: 1;
+						font-weight: 500;
+						margin-right: 10px;
+						color: $mainTextColor;
+					}
+				}
+
+			}
+
+		}
+	}
+
+	&_mine {
+		flex-direction: row-reverse;
+		align-self: flex-end;
+
+		#{$message}__sender-icon {
+			margin: 0;
+			margin-left: 15px;
+		}
+
+		#{$message}__content {
+			align-items: flex-end;
+		}
+	}
+
+	&_system {
+		display: block;
+		align-self: center;
+
+		.system-message__text {
+			font-size: 12px;
+			text-align: center;
+			color: $systemTextColor;
+			user-select: none;
+		}
+	}
+}
