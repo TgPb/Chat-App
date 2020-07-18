@@ -3,10 +3,11 @@
 	height: 100px;
 	padding: 20px 60px;
 	background-color: #fff;
-	box-shadow: 0 0 15px rgba(0, 0, 0, .2);
+	box-shadow: 0 0 15px rgba(37, 29, 67, .3);
 	display: flex;
 	align-items: center;
 	user-select: none;
+	z-index: 2;
 
 	.header {
 		&__chat-icon {

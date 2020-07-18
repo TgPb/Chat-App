@@ -20,7 +20,7 @@ $systemTextColor: lighten($mainTextColor, 10%);
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
-		max-width: calc(100% - 55px);
+		max-width: calc(100% - 65px);
 
 		.content {
 			&__info {
