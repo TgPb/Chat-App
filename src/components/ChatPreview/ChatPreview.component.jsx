@@ -1,26 +1,18 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 import styles from './ChatPreview.module.scss';
+
 import UserIconWithStatus from "../UserIconWithStatus/UserIconWithStatus.component";
 import ChatPreviewInfo from "../ChatPreviewInfo/ChatPreviewInfo.component";
 
 const ChatPreview = ({ chat }) => {
-    const history = useHistory();
-    const { chatId } = useParams();
-
-    const previewStyles = classNames(
-        styles['chat-preview'],
-        {
-            [styles['chat-preview_active']]: chat === +chatId
-        }
-    );
-
     return (
-        <div
-            className={previewStyles}
-            onClick={() => history.push(`/chats/${chat}`)}
+        <NavLink
+            exact
+            className={styles['chat-preview']}
+            activeClassName={styles['chat-preview_active']}
+            to={`/chats/${chat}`}
         >
             <UserIconWithStatus
                 className={styles['chat-preview__icon']}
@@ -36,7 +28,7 @@ const ChatPreview = ({ chat }) => {
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae debitis fugit maiores modi sed totam voluptatum! Beatae dolorem ratione vel.'
                 }}
             />
-        </div>
+        </NavLink>
     );
 };
 
