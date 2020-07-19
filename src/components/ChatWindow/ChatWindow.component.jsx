@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './ChatWindow.module.scss';
 import ChatWindowHeader from "../ChatWindowHeader/ChatWindowHeader.component";
 import ChatMessagesHistory from "../ChatMessagesHistory/ChatMessagesHistory.component";
+import MessageSender from "../MessageSender/MessageSender.component";
 
 const messages = [
     {
@@ -60,6 +61,7 @@ const ChatWindow = () => {
         <div className={styles['chat-window']}>
             <ChatWindowHeader />
             <ChatMessagesHistory messages={messages} />
+            <MessageSender />
         </div>
     );
 };

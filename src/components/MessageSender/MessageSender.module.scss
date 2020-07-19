@@ -1,0 +1,40 @@
+.message-sender {
+	width: 100%;
+	min-height: 100px;
+	max-height: 200px;
+	display: flex;
+	align-items: flex-end;
+	padding: 20px 60px;
+	background-color: #fff;
+	box-shadow: 0 0 15px rgba(37, 29, 67, .3);
+	z-index: 2;
+
+	&__input {
+		flex: 1;
+		margin-right: 20px;
+	}
+
+	&__submit {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		height: 60px;
+		width: 60px;
+		outline: none;
+		background: none;
+		border: none;
+
+		.submit__icon {
+			opacity: .5;
+			transition: .2s linear;
+		}
+
+		&:hover,
+		&:focus {
+			.submit__icon {
+				opacity: .9;
+			}
+		}
+	}
+}
