@@ -11,21 +11,25 @@ import {formatDate} from '../../utils/dates';
 const Message = ({ message }) => {
     const { text, system, isMine, date = Date.now() } = message;
 
-    const [formattedDate, setFormattedDate] = useState(formatDate(date));
+    const [dateData, setDateData] = useState(formatDate(date));
+
+    const { formattedDate, needUpdate } = dateData;
 
     useEffect(
         () => {
-            const interval = setInterval(
-                () => {
-                    setFormattedDate(formatDate(date));
-                },
-                1000 * 60
-            );
-            return () => {
-                clearInterval(interval);
+            if (!system && needUpdate) {
+                const interval = setTimeout(
+                    () => {
+                        setDateData(formatDate(date));
+                    },
+                    1000
+                );
+                return () => {
+                    clearTimeout(interval);
+                }
             }
         },
-        [date]
+        [date, needUpdate, system]
     );
 
     const messageStyles = classNames(

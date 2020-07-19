@@ -7,7 +7,7 @@ import ChatMessagesHistory from "../ChatMessagesHistory/ChatMessagesHistory.comp
 const messages = [
     {
         text: 'hello',
-        date: Date.now(),
+        date: 'Tue Feb 11 2014 00:00:00',
         isMine: true
     }, {
         text: 'hello',
@@ -18,6 +18,34 @@ const messages = [
     }, {
         text: 'hello',
         date: Date.now()
+    }, {
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Aspernatur cupiditate et explicabo fugiat illum numquam reprehenderit sint tenetur?
+        A adipisci aliquid asperiores autem, corporis cumque delectus deserunt doloremque, eos error est et eum facilis harum illo in incidunt itaque magni minima, nesciunt numquam placeat quisquam ratione rem tempore tenetur voluptatum?`,
+        date: Date.now(),
+        isMine: true
+    }, {
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Aspernatur cupiditate et explicabo fugiat illum numquam reprehenderit sint tenetur?
+        A adipisci aliquid asperiores autem, corporis cumque delectus deserunt doloremque, eos error est et eum facilis harum illo in incidunt itaque magni minima, nesciunt numquam placeat quisquam ratione rem tempore tenetur voluptatum?`,
+        date: Date.now(),
+        isMine: true
+    }, {
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Aspernatur cupiditate et explicabo fugiat illum numquam reprehenderit sint tenetur?
+        A adipisci aliquid asperiores autem, corporis cumque delectus deserunt doloremque, eos error est et eum facilis harum illo in incidunt itaque magni minima, nesciunt numquam placeat quisquam ratione rem tempore tenetur voluptatum?`,
+        date: Date.now(),
+    }, {
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Aspernatur cupiditate et explicabo fugiat illum numquam reprehenderit sint tenetur?
+        A adipisci aliquid asperiores autem, corporis cumque delectus deserunt doloremque, eos error est et eum facilis harum illo in incidunt itaque magni minima, nesciunt numquam placeat quisquam ratione rem tempore tenetur voluptatum?`,
+        date: Date.now(),
+        isMine: true
+    }, {
+        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Aspernatur cupiditate et explicabo fugiat illum numquam reprehenderit sint tenetur?
+        A adipisci aliquid asperiores autem, corporis cumque delectus deserunt doloremque, eos error est et eum facilis harum illo in incidunt itaque magni minima, nesciunt numquam placeat quisquam ratione rem tempore tenetur voluptatum?`,
+        date: Date.now(),
     }, {
         text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
         Aspernatur cupiditate et explicabo fugiat illum numquam reprehenderit sint tenetur?

@@ -16,7 +16,7 @@ const ChatPreviewInfo = ({ className, name, lastMessage }) => {
                 () => {
                     setFormattedDate(timeDistanceToNowInWords(date));
                 },
-                1000 * 60
+                1000
             );
             return () => {
                 clearInterval(interval);

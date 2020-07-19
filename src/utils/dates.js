@@ -13,29 +13,29 @@ export const formatDate = date => {
 
     const isToday = dateFns.isToday(dateObj);
 
-    if (isToday) return dateFns.format(
-        dateObj,
-        `'today, at' HH:mm`
-    );
+    if (isToday) return {
+        formattedDate: dateFns.format(
+            dateObj,
+            `'today, at' HH:mm`
+        ),
+        needUpdate: true
+    };
 
     const isYesterday = dateFns.isYesterday(dateObj);
 
-    if (isYesterday) return dateFns.format(
-        dateObj,
-        `'yesterday, at' HH:mm`
-    );
+    if (isYesterday) return {
+        formattedDate: dateFns.format(
+            dateObj,
+            `'yesterday, at' HH:mm`
+        ),
+        needUpdate: true
+    };
 
-    const isThisYear = dateFns.isThisYear(dateObj);
-
-    if (isThisYear) return dateFns.format(
-        dateObj,
-        `MMM d', at' HH:mm`
-    );
-
-    return dateFns.format(
-        dateObj,
-        `MMM do yyyy', at' HH:mm`
-    );
+    return {
+        formattedDate: dateFns.format(
+            dateObj,
+            `MMM do yyyy', at' HH:mm`
+        ),
+        needUpdate: false
+    };
 }
-
-console.log(formatDate('Tue Jul 16 2019 00:01:00'))
