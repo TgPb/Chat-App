@@ -7,7 +7,7 @@ export const usersReducer = (state = DEFAULT_STATE, action) => {
 
     switch (type) {
         case usersTypes.SET_USER_INFO:
-            const { id, name, surname, icon } = payload;
+            const { id, name, surname, icon, isOnline } = payload;
 
             return {
                 ...state,
@@ -15,7 +15,8 @@ export const usersReducer = (state = DEFAULT_STATE, action) => {
                     id,
                     name,
                     surname,
-                    icon
+                    icon,
+                    isOnline
                 }
             };
 
