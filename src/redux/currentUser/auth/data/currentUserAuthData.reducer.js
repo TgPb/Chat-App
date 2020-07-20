@@ -1,6 +1,8 @@
 import {currentUserAuthDataTypes} from "./currentUserAuthData.types";
 
-const DEFAULT_STATE = null;
+const DEFAULT_STATE = {
+    id: '1'
+};
 
 export const currentUserAuthDataReducer = (state = DEFAULT_STATE, action) => {
     const { type, payload } = action;
@@ -10,6 +12,7 @@ export const currentUserAuthDataReducer = (state = DEFAULT_STATE, action) => {
             const { id, token } = payload;
 
             return {
+                ...state,
                 id,
                 token
             };

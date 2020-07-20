@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 
-import AuthPage from "./pages/AuthPage/AuthPage.page";
 import ChatsPage from "./pages/ChatsPage/ChatsPage.page";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.page";
-import OnlyForAuthenticated from "./hocs/OnlyForAuthenticated/OnlyForAuthenticated.hoc";
 
-const SecuredChatsPage = OnlyForAuthenticated(ChatsPage);
+import {ConnectedAuthPage} from "./pages/AuthPage/AuthPage.containers";
+import {ConnectedOnlyForAuthenticated} from "./hocs/OnlyForAuthenticated/OnlyForAuthenticated.containers";
+
+// const SecuredChatsPage = ConnectedOnlyForAuthenticated(ChatsPage);
 
 const App = () => {
     const history = useHistory();
@@ -23,10 +24,13 @@ const App = () => {
         <div className="App">
             <Switch>
                 <Route path='/auth'>
-                    <AuthPage />
+                    <ConnectedAuthPage />
                 </Route>
                 <Route path='/chats'>
-                    <SecuredChatsPage user />
+                    {/*<SecuredChatsPage />*/}
+                    <ConnectedOnlyForAuthenticated>
+                        <ChatsPage />
+                    </ConnectedOnlyForAuthenticated>
                 </Route>
                 <Route path='*'>
                     <NotFoundPage />

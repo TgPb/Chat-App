@@ -4,16 +4,16 @@ import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 import styles from './AuthPage.module.scss';
 import NotFoundPage from "../NotFoundPage/NotFoundPage.page";
 
-const AuthPage = ({ user }) => {
+const AuthPage = ({ isAuthed }) => {
     const history = useHistory();
     const { path, isExact } = useRouteMatch();
 
     useEffect(
         () => {
-            user && history.push('/chats');
+            isAuthed && history.push('/chats');
             isExact && history.push(`${path}/signin`);
         },
-        [user, history, isExact, path]
+        [isAuthed, history, isExact, path]
     );
 
     return (

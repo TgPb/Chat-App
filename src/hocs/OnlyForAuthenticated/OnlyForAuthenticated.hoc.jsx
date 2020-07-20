@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const OnlyForAuthenticated = Component => (props) => {
+const OnlyForAuthenticated = ({ children, isAuthed }) => {
     return (
-        props.user ?
-            <Component {...props} /> :
+        isAuthed ?
+            children :
             <Redirect to={'/auth/signin'} />
     );
 };
