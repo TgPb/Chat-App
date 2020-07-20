@@ -12,10 +12,11 @@ export const userSignInStart = ({ email, password }) => ({
     }
 });
 
-export const userSignInSuccess = ({ id }) => ({
+export const userSignInSuccess = ({ id, token }) => ({
     type: userAuthDataTypes.USER_SIGN_IN_SUCCESS,
     payload: {
         id,
+        token
     }
 });
 
