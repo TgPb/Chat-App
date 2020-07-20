@@ -1,6 +1,6 @@
 import {currentUserChatsDataTypes} from "./currentUserChatsData.types";
 
-const DEFAULT_STATE = [];
+const DEFAULT_STATE = ['1', '2'];
 
 export const currentUserChatsDataReducer = (state = DEFAULT_STATE, action) => {
     const {type, payload} = action;

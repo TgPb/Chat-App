@@ -5,7 +5,7 @@ import styles from './ChatPreviewInfo.module.scss';
 
 import { timeDistanceToNowInWords } from '../../utils/dates';
 
-const ChatPreviewInfo = ({ className, name, lastMessage }) => {
+const ChatPreviewInfo = ({ className, name, lastMessage = {} }) => {
     const { sender, date, text } = lastMessage;
 
     const [formattedDate, setFormattedDate] = useState(timeDistanceToNowInWords(date));
@@ -41,7 +41,7 @@ const ChatPreviewInfo = ({ className, name, lastMessage }) => {
                 { name }
             </span>
             <p className={styles['chat-info__message']}>
-                { sender }: { text }
+                { sender && `${sender}:` } {text}
             </p>
         </div>
     );

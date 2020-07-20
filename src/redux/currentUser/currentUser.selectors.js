@@ -34,7 +34,7 @@ export const selectCurrentUserChatsState = createSelector(
     currentUser => currentUser.chats
 );
 
-export const selectCurrentUserChatIds = createSelector(
+export const selectCurrentUserChatsIds = createSelector(
     [selectCurrentUserChatsState],
     chats => chats.data
 );
