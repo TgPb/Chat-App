@@ -1,4 +1,4 @@
-export const userChatsDataTypes = {
+export const currentUserChatsDataTypes = {
     'USER_CHATS_FETCH_START': 'USER_CHATS_FETCH_START',
     'USER_CHATS_FETCH_SUCCESS': 'USER_CHATS_FETCH_SUCCESS',
 };

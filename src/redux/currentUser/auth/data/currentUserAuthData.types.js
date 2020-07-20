@@ -1,4 +1,4 @@
-export const userAuthDataTypes = {
+export const currentUserAuthDataTypes = {
     'USER_SIGN_IN_WITH_TOKEN': 'USER_SIGN_IN_WITH_TOKEN',
     'USER_SIGN_IN_START': 'USER_SIGN_IN_START',
     'USER_SIGN_IN_SUCCESS': 'USER_SIGN_IN_SUCCESS',

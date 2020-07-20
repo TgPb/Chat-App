@@ -1,4 +1,4 @@
-export const userAuthLoadingTypes = {
+export const currentUserAuthLoadingTypes = {
     'SET_USER_AUTH_LOADING': 'SET_USER_AUTH_LOADING',
     'RESET_USER_AUTH_LOADING': 'RESET_USER_AUTH_LOADING',
 }
