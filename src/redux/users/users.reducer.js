@@ -5,10 +5,10 @@ const DEFAULT_STATE = {};
 export const usersReducer = (state = DEFAULT_STATE, action) => {
     const {type, payload} = action;
 
-    const { id, name, surname, icon } = payload;
-
     switch (type) {
         case usersTypes.SET_USER_INFO:
+            const { id, name, surname, icon } = payload;
+
             return {
                 ...state,
                 [id]: {
