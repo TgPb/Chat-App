@@ -15,7 +15,7 @@ export const userAuthDataReducer = (state = DEFAULT_STATE, action) => {
             };
 
         case userAuthDataTypes.USER_SIGN_OUT_SUCCESS:
-            return null;
+            return DEFAULT_STATE;
 
         default:
             return state;
