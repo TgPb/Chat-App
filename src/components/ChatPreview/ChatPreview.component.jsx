@@ -6,15 +6,15 @@ import styles from './ChatPreview.module.scss';
 import UserIconWithStatus from "../UserIconWithStatus/UserIconWithStatus.component";
 import ChatPreviewInfo from "../ChatPreviewInfo/ChatPreviewInfo.component";
 
-const ChatPreview = ({ chatId, chatInfo = {} }) => {
-    const { isOnline, name, lastMessage, icon } = chatInfo;
+const ChatPreview = ({ chatInfo = {} }) => {
+    const { id, isOnline, name, lastMessage, icon } = chatInfo;
 
     return (
         <NavLink
             exact
             className={styles['chat-preview']}
             activeClassName={styles['chat-preview_active']}
-            to={`/chats/${chatId}`}
+            to={`/chats/${id}`}
         >
             <UserIconWithStatus
                 className={styles['chat-preview__icon']}
