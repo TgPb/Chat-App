@@ -5,28 +5,42 @@ import {selectUsers} from "../users/users.selectors";
 
 import {denormalizeData} from "../../utils/normalize";
 
+// for private chats only: returns interlocutor object
 const getInterlocutor = (participants, userId) => participants.find(
     participant => participant.id !== userId
 );
 
+// for private chats only: returns string in format "{name} {surname}"
 const getPrivateChatName = (participants, userId) => {
+    // find interlocutor
     const interlocutor = getInterlocutor(participants, userId);
     const { name, surname } = interlocutor;
+    // return string in format "{name} {surname}"
     return `${name} ${surname}`
 };
 
+// returns chats state
 export const selectChats = state => state.chats;
 
+// returns specific chat by id
 export const selectChat = id => createSelector(
     [selectChats],
     chats => chats[id]
 );
 
+// returns unmodified chat messages as an array
+export const selectChatMessages = id => createSelector(
+    [selectChat(id)],
+    chat => chat.messages
+);
+
+// returns chat participants ids as an array
 export const selectChatParticipantsIds = id => createSelector(
     [selectChat(id)],
     chat => chat.participants
 );
 
+// returns chat participants objects as an array
 export const selectChatParticipants = id => createSelector(
     [selectUsers, selectChatParticipantsIds(id)],
     (users, participantsIds) => denormalizeData(users).filter(
@@ -34,21 +48,23 @@ export const selectChatParticipants = id => createSelector(
     )
 );
 
+// calculates chat status depending on chat type (private or not) as boolean
 export const selectChatStatus = id => createSelector(
     [selectCurrentUserId, selectChat(id), selectChatParticipants(id)],
     (userId, chat, participants) => {
         const { isPrivate } = chat;
 
         if (isPrivate) {
-            const interlocutor = getInterlocutor(participants, userId);
-
-            return interlocutor.isOnline;
+            // if private chat looking for interlocutor to be online
+            return getInterlocutor(participants, userId).isOnline;
         } else return participants.some(
+            // else looking for anyone online except currentUser
             participant => participant.id !== userId && participant.isOnline
         );
     }
 );
 
+// returns needed data for chat preview
 export const selectChatPreviewInfo = id => createSelector(
     [selectCurrentUserId, selectChat(id), selectChatParticipants(id), selectChatStatus(id)],
     (userId, chat, participants, status) => {
@@ -57,6 +73,7 @@ export const selectChatPreviewInfo = id => createSelector(
         const lastMessage = messages[messages.length - 1];
         const { from, date, text, isSystem } = lastMessage;
 
+        // getting sender (system message - null, currentUser - 'You', anyone else - users's name)
         const getSender = () => {
             if (isSystem) return null;
             if (userId === from) return 'You';
@@ -76,4 +93,18 @@ export const selectChatPreviewInfo = id => createSelector(
             }
         };
     }
+);
+
+// return modified chat messages with isMine property and sender object
+export const selectChatHistory = id => createSelector(
+    [selectCurrentUserId, selectChatMessages(id), selectUsers],
+    (userId, messages, users) => messages.map(
+        message => ({
+            ...message,
+            isMine: message.from === userId,
+            from: message.from && {
+                ...users[message.from]
+            }
+        })
+    )
 );

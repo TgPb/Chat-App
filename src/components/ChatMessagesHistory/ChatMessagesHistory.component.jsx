@@ -8,9 +8,12 @@ const ChatMessagesHistory = ({ messages }) => {
 
     useEffect(
         () => {
-            historyEndRef.current.scrollIntoView({ behavior: 'smooth' });
-        },
-        []
+            messages &&
+            messages.length &&
+            historyEndRef
+                .current
+                .scrollIntoView({ behavior: 'smooth' });
+        }
     );
 
     return (
