@@ -1,0 +1,45 @@
+$mainColor: rgb(37, 29, 67);
+$mainColorTransparent: rgba(37, 29, 67, .8);
+$errorTextColor: rgba(255, 0, 0, .6);
+
+.sign-up-form {
+	width: 100%;
+	max-width: 430px;
+	padding: 20px;
+	border: 1px solid $mainColor;
+	border-radius: 20px;
+	box-shadow: 1px 1px 5px $mainColorTransparent;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.form {
+		&__title {
+			color: $mainColorTransparent;
+			font-size: 20px;
+			margin-bottom: 15px;
+		}
+
+		&__errors {
+			width: 100%;
+			margin-bottom: 10px;
+
+			.form-errors__item {
+				list-style: none;
+				color: $errorTextColor;
+				font-size: 13px;
+			}
+		}
+
+		&__input {
+			margin-bottom: 20px;
+		}
+
+		&__buttons {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+	}
+}

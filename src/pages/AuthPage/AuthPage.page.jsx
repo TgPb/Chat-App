@@ -2,6 +2,10 @@ import React, {useEffect} from 'react';
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 
 import styles from './AuthPage.module.scss';
+
+import SignInForm from "../../components/SignInForm/SignInForm.component";
+import SignUpForm from "../../components/SignUpForm/SignUpForm.component";
+
 import NotFoundPage from "../NotFoundPage/NotFoundPage.page";
 
 const AuthPage = ({ isAuthed }) => {
@@ -19,8 +23,12 @@ const AuthPage = ({ isAuthed }) => {
     return (
         <section className={styles['auth-page']}>
             <Switch>
-                <Route exact path={`${path}/signin`} render={()=><div>Sign In Form</div>} />
-                <Route exact path={`${path}/signup`} render={()=><div>Sign Up Form</div>} />
+                <Route exact path={`${path}/signin`}>
+                    <SignInForm />
+                </Route>
+                <Route exact path={`${path}/signup`}>
+                    <SignUpForm />
+                </Route>
                 <Route path='*'>
                     <NotFoundPage />
                 </Route>
