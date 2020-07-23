@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import classNames from 'classnames';
 
 import styles from './Button.module.scss';
+
 import {Link} from "react-router-dom";
 
-const Button = ({ className, loading, tag: Tag = 'div', href, children, ...otherProps }) => {
+const Button = ({ onCLick = ()=>{}, className, loading, tag: Tag = 'div', href, children, ...otherProps }) => {
     const buttonStyles = classNames(
         styles['button'],
         {
@@ -13,6 +14,13 @@ const Button = ({ className, loading, tag: Tag = 'div', href, children, ...other
         {
             [className]: className
         }
+    );
+
+    const handleClick = useCallback(
+        () => {
+            !loading && onCLick();
+        },
+        [loading, onCLick]
     );
 
     return (
@@ -26,8 +34,14 @@ const Button = ({ className, loading, tag: Tag = 'div', href, children, ...other
         ) : (
             <Tag
                 className={buttonStyles}
+                onClick={handleClick}
                 {...otherProps}
             >
+                {
+                    loading && (
+                        <div className={styles['button__loader']} />
+                    )
+                }
                 { children }
             </Tag>
         )

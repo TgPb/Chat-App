@@ -34,7 +34,7 @@ const defaultState = {
     }
 };
 
-const SignInForm = () => {
+const SignInForm = ({ signInStart, loading }) => {
     const {
         fields,
         validateForm,
@@ -46,10 +46,15 @@ const SignInForm = () => {
         e => {
             e.preventDefault();
 
-            const errors = validateForm();
-            !errors.length && console.log('submitted');
+            if (!loading) {
+                const errors = validateForm();
+                !errors.length && signInStart({
+                    email: fields.email.value,
+                    password: fields.password.value
+                });
+            }
         },
-        [validateForm]
+        [validateForm, fields, signInStart, loading]
     );
 
     return (
@@ -102,6 +107,7 @@ const SignInForm = () => {
             />
             <div className={styles['form__buttons']}>
                 <Button
+                    loading={loading}
                     tag='button'
                     type='submit'
                 >

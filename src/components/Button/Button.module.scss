@@ -18,10 +18,30 @@ $secondaryColor: #fff;
 	user-select: none;
 	cursor: pointer;
 
+	$button: &;
+
+	&__loader {
+		display: inline-block;
+		background-color: transparent;
+		border: 2px solid transparent;
+		border-top-color: #fff;
+		border-radius: 50%;
+	}
+
+	&_loading {
+		.button__loader {
+			animation: loaderAppear .35s forwards, loaderSpin .7s linear infinite;
+		}
+	}
+
 	&:focus,
 	&:hover {
 		color: $mainColor;
 		background: $secondaryColor;
+
+		#{$button}__loader {
+			border-top-color: $mainColor;
+		}
 	}
 
 	&:active {
@@ -41,5 +61,37 @@ $secondaryColor: #fff;
 	&:focus,
 	&:hover {
 		color: $mainColor;
+	}
+}
+
+@keyframes loaderAppear {
+	0% {
+		height: 0;
+		width: 0;
+		opacity: 0;
+	}
+
+	99% {
+		opacity: 0;
+		height: 14px;
+		width: 14px;
+		margin-right: 7px;
+	}
+
+	100% {
+		opacity: 1;
+		height: 14px;
+		width: 14px;
+		margin-right: 7px;
+	}
+}
+
+@keyframes loaderSpin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
 	}
 }

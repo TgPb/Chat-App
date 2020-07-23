@@ -20,14 +20,15 @@ export const currentUserSignInSuccess = ({ id, token }) => ({
     }
 });
 
-export const currentUserSignUpStart = ({ email, password, name, surname, icon }) => ({
+export const currentUserSignUpStart = ({ email, password, name, surname, icon, history }) => ({
     type: currentUserAuthDataTypes.USER_SIGN_UP_START,
     payload: {
         email,
         password,
         name,
         surname,
-        icon
+        icon,
+        history
     }
 });
 

@@ -1,0 +1,38 @@
+$mainColorTransparent: rgba(37, 29, 67, .7);
+$mainColor: rgba(37, 29, 67, 1);
+
+.file-upload {
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	$upload: &;
+
+	&__input {
+		width: 0;
+		height: 0;
+	}
+
+	&__label {
+		padding: 7px 15px;
+		background: $mainColorTransparent;
+		transition: .2s linear;
+		color: #fff;
+		border: 1px solid $mainColor;
+		border-radius: 15px;
+	}
+
+	&__label:hover,
+	&__input:focus + #{$upload}__label {
+		background: $mainColor;
+	}
+
+	&__file-name {
+		max-width: 50%;
+		margin-left: 10px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

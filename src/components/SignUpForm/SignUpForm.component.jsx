@@ -1,4 +1,5 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
+import { useHistory } from 'react-router-dom';
 
 import styles from './SignUpForm.module.scss';
 
@@ -8,6 +9,7 @@ import Button from "../Button/Button.component";
 import {validate} from "../../utils/validators";
 
 import useFormWithValidation from "../../hooks/useFormWithValidation";
+import FileUploadInput from "../FileUploadInput/FileUploadInput.component";
 
 const defaultState = {
     name: {
@@ -60,7 +62,9 @@ const defaultState = {
     }
 };
 
-const SignUpForm = () => {
+const SignUpForm = ({ signUpStart, loading }) => {
+    const history = useHistory();
+
     const {
         fields,
         validateForm,
@@ -68,15 +72,42 @@ const SignUpForm = () => {
         validateInput
     } = useFormWithValidation(defaultState);
 
+    const [state, setState] = useState({
+        icon: ''
+    });
+
+    console.log(state.icon)
+
     const handleSubmit = useCallback(
         e => {
             e.preventDefault();
 
-            const errors = validateForm();
+            if (!loading) {
+                const errors = validateForm();
 
-            !errors.length && console.log('submitted');
+                !errors.length && signUpStart({
+                    icon: state.icon,
+                    history,
+                    name: fields.name.value,
+                    surname: fields.surname.value,
+                    email: fields.email.value,
+                    password: fields.password.value
+                });
+            }
         },
-        [validateForm]
+        [validateForm, state, fields, loading, signUpStart, history]
+    );
+
+    const handleFileSelect = useCallback(
+        e => {
+            const { files, name } = e.target;
+
+            setState({
+                ...state,
+                [name]: files[0]
+            });
+        },
+        [state]
     );
 
     return (
@@ -163,10 +194,19 @@ const SignUpForm = () => {
                 className={styles['form__input']}
                 error={fields.confirmPassword.errors.length}
             />
+            <FileUploadInput
+                file={state.icon ? state.icon.name : ''}
+                id='icon'
+                name='icon'
+                label='Upload icon'
+                onChange={handleFileSelect}
+                className={styles['form__input']}
+            />
             <div className={styles['form__buttons']}>
                 <Button
                     tag='button'
                     type='submit'
+                    loading={loading}
                 >
                     Sign Up
                 </Button>

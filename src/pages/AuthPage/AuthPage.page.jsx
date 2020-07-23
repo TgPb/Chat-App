@@ -3,8 +3,8 @@ import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
 
 import styles from './AuthPage.module.scss';
 
-import SignInForm from "../../components/SignInForm/SignInForm.component";
-import SignUpForm from "../../components/SignUpForm/SignUpForm.component";
+import {ConnectedSignInForm} from "../../components/SignInForm/SignInForm.containers";
+import {ConnectedSignUpForm} from "../../components/SignUpForm/SignUpForm.containers";
 
 import NotFoundPage from "../NotFoundPage/NotFoundPage.page";
 
@@ -24,10 +24,10 @@ const AuthPage = ({ isAuthed }) => {
         <section className={styles['auth-page']}>
             <Switch>
                 <Route exact path={`${path}/signin`}>
-                    <SignInForm />
+                    <ConnectedSignInForm />
                 </Route>
                 <Route exact path={`${path}/signup`}>
-                    <SignUpForm />
+                    <ConnectedSignUpForm />
                 </Route>
                 <Route path='*'>
                     <NotFoundPage />

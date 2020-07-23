@@ -28,7 +28,7 @@ const DEFAULT_STATE = {
         participants: ['1', '3'],
         messages: [
             {
-                from: '1',
+                from: '5f195e0ebb78c596433ee90d',
                 text: 'Hello',
                 date: 'Tue Feb 11 2014 01:25:00'
             }, {

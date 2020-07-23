@@ -6,12 +6,19 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.page";
 
 import {ConnectedAuthPage} from "./pages/AuthPage/AuthPage.containers";
 import {ConnectedOnlyForAuthenticated} from "./hocs/OnlyForAuthenticated/OnlyForAuthenticated.containers";
+import {connect} from "react-redux";
+import {currentUserSignInWithToken} from "./redux/currentUser/auth/data/currentUserAuthData.actions";
 
-// const SecuredChatsPage = ConnectedOnlyForAuthenticated(ChatsPage);
-
-const App = () => {
+const App = ({ signInWithToken }) => {
     const history = useHistory();
     const { isExact } = useRouteMatch();
+
+    useEffect(
+        () => {
+            signInWithToken()
+        },
+        [signInWithToken]
+    );
 
     useEffect(
         () => {
@@ -27,7 +34,6 @@ const App = () => {
                     <ConnectedAuthPage />
                 </Route>
                 <Route path='/chats'>
-                    {/*<SecuredChatsPage />*/}
                     <ConnectedOnlyForAuthenticated>
                         <ChatsPage />
                     </ConnectedOnlyForAuthenticated>
@@ -40,4 +46,11 @@ const App = () => {
     );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+    signInWithToken: () => dispatch(currentUserSignInWithToken())
+});
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(App);
