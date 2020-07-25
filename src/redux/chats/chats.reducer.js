@@ -34,6 +34,20 @@ export const chatsReducer = (state = DEFAULT_STATE, action) => {
                 }
             };
 
+        case chatsTypes.ADD_NEW_PARTICIPANT:
+            const { _id: participantId, to: chatId } = payload;
+
+            return {
+                ...state,
+                [chatId]: {
+                    ...state[chatId],
+                    participants: [
+                        ...state[chatId].participants,
+                        participantId
+                    ]
+                }
+            };
+
         default:
             return state;
     }

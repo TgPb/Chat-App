@@ -19,3 +19,11 @@ export const addNewMessageToHistory = ({ to, message }) => ({
         message
     }
 });
+
+export const addNewParticipant = ({ to, _id }) => ({
+    type: chatsTypes.ADD_NEW_PARTICIPANT,
+    payload: {
+        to,
+        _id
+    }
+});

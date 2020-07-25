@@ -12,9 +12,10 @@ import { eventChannel } from 'redux-saga';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-import {selectCurrentUserId, selectCurrentUserToken} from "../currentUser.selectors";
+import {selectCurrentUserId, selectCurrentUserInvite, selectCurrentUserToken} from "../currentUser.selectors";
 import {currentUserChatsDataTypes} from "./data/currentUserChatsData.types";
 import {
+    addParticipant,
     chatsFetchSuccess,
     connectedToChats,
     createChatSuccess,
@@ -22,6 +23,7 @@ import {
 } from "../../../sockets/chats/chatsNamespace.actions";
 import {chatsNamespaceEvents} from "../../../sockets/chats/chatsNamespace.events";
 import {
+    addChatParticipant,
     addNewMessage,
     createNewChatSuccess, setChatUserOffline, setChatUserOnline,
     userChatsFetchStart,
@@ -31,10 +33,12 @@ import {resetCurrentUserChatsLoading, setCurrentUserChatsLoading} from "./loadin
 
 function* createChatsSocketConnection() {
     const _id = yield select(selectCurrentUserId);
+    const invite = yield select(selectCurrentUserInvite);
 
     return yield io.connect('/chats', {
         query: {
-            _id
+            _id,
+            invite: invite || ''
         }
     });
 }
@@ -44,39 +48,47 @@ function createChatsSocketChannel(socket) {
 
         const connectHandler = () => {
             emit(connectedToChats());
-        }
+        };
 
         const chatsFetchSuccessHandler = ({ chats }) => {
             emit(chatsFetchSuccess({ chats }));
-        }
+        };
 
         const createChatSuccessHandler = ({ chat }) => {
             emit(createChatSuccess({ chat }));
-        }
+        };
 
         const chatNewMessageHandler = ({ to, message }) => {
             emit(newMessage({ to, message }));
-        }
+        };
 
         const participantOnlineHandler = ({ _id }) => {
             emit(participantOnline({ _id }));
-        }
+        };
 
         const participantOfflineHandler = ({ _id }) => {
             emit(participantOffline({ _id }));
-        }
+        };
 
         const chatsFetchErrorHandler = () => {
             alert('Error during fetching chats. Please, reload the page and try again');
-        }
+        };
 
         const createChatErrorHandler = () => {
             alert('Error during creating chat. Please, reload the page and try again');
-        }
+        };
 
         const sendMessageErrorHandler = () => {
             alert('Error during sending message. Please, try again');
-        }
+        };
+
+        const addParticipantErrorHandler = ({ message }) => {
+            alert(message);
+        };
+
+        const newParticipantHandler = ({ to, participant }) => {
+            emit(addParticipant({ to, participant }));
+        };
 
         socket.on(chatsNamespaceEvents.CONNECT, connectHandler);
 
@@ -95,6 +107,10 @@ function createChatsSocketChannel(socket) {
         socket.on(chatsNamespaceEvents.CREATE_CHAT_ERROR, createChatErrorHandler);
 
         socket.on(chatsNamespaceEvents.SEND_MESSAGE_ERROR, sendMessageErrorHandler);
+
+        socket.on(chatsNamespaceEvents.ADD_PARTICIPANT_ERROR, addParticipantErrorHandler);
+
+        socket.on(chatsNamespaceEvents.NEW_PARTICIPANT, newParticipantHandler);
 
         return () => {
             socket.close();
@@ -216,6 +232,12 @@ function* externalChatsEventsWatcher(socket, channel) {
                     const { _id: userOffline } = payload;
 
                     yield fork(setChatUserOffline, { _id: userOffline });
+                    break;
+
+                case chatsNamespaceEvents.NEW_PARTICIPANT:
+                    const { to: chatId, participant } = payload;
+
+                    yield fork(addChatParticipant, { to: chatId, participant });
                     break;
 
                 default:

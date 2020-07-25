@@ -7,7 +7,7 @@ import ChatControlPanel from "../ChatControlPanel/ChatControlPanel.component";
 
 const ChatWindowHeader = ({ chatInfo = {} }) => {
     const { name, description, isOnline, icon, _id } = chatInfo;
-    console.log(icon)
+
     return (
         <header className={styles['chat-window-header']}>
             <UserIconWithStatus

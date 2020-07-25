@@ -10,7 +10,7 @@ import {
 } from "../../redux/currentUser/chats/loading/currentUserChatsLoading.actions";
 
 import {chatsNamespaceEvents} from "./chatsNamespace.events";
-import {addNewMessageToHistory, setChatInfo} from "../../redux/chats/chats.actions";
+import {addNewMessageToHistory, addNewParticipant, setChatInfo} from "../../redux/chats/chats.actions";
 import {setUserInfo, setUserOffline, setUserOnline} from "../../redux/users/users.actions";
 
 export function* userChatsFetchStart({ socket }) {
@@ -74,4 +74,13 @@ export function* setChatUserOnline({ _id }) {
 // reset user isOnline
 export function* setChatUserOffline({ _id }) {
     yield put(setUserOffline({ _id }));
+}
+
+export function* addChatParticipant({ to, participant }) {
+    // set user data
+    yield call(setParticipant, participant);
+
+    const { _id } = participant;
+    // add participant to chat
+    yield put(addNewParticipant({ to, _id }));
 }

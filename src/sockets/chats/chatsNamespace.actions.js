@@ -39,3 +39,11 @@ export const participantOffline = ({ _id }) => ({
         _id
     }
 });
+
+export const addParticipant = ({ to, participant }) => ({
+    type: chatsNamespaceEvents.NEW_PARTICIPANT,
+    payload: {
+        to,
+        participant
+    }
+});
