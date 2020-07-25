@@ -1,8 +1,8 @@
 $bgColor: rgb(37, 29, 67);
 
 .chats-list {
-	width: 30%;
-	height: 100%;
+	width: 100%;
+	flex: 1;
 	overflow: auto;
 	background-color: $bgColor;
 	color: #fff;
@@ -16,12 +16,6 @@ $bgColor: rgb(37, 29, 67);
 			padding: 10px;
 			text-align: center;
 			user-select: none;
-		}
-
-		&__btn-create {
-			margin-bottom: 15px;
-			width: 90%;
-			text-align: center;
 		}
 	}
 }

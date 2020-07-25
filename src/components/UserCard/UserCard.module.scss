@@ -1,0 +1,26 @@
+.user-card {
+	padding: 20px;
+	width: 100%;
+	height: auto;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+
+	&__icon {
+		margin-right: 20px;
+	}
+
+	&__full-name {
+		color: #fff;
+		font-size: 16px;
+		line-height: 1;
+		margin-bottom: 5px;
+		text-align: left;
+		user-select: none;
+	}
+
+	&__exit-btn {
+		padding: 5px;
+		margin-left: auto;
+	}
+}

@@ -7,8 +7,8 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage.page";
 
 import NoChatSelectedWindow from "../../components/NoChatSelectedWindow/NoChatSelectedWindow.component";
 import ChatWindow from "../../components/ChatWindow/ChatWindow.component";
+import SideBar from "../../components/SideBar/SideBar.component";
 
-import {ConnectedChatsList} from "../../components/ChatsList/ChatsList.containers";
 import {ConnectedCreateChatWindow} from "../../components/CreateChatWindow/CreateChatWindow.containers";
 
 const ChatsPage = ({ connectToChatsSocket }) => {
@@ -24,7 +24,7 @@ const ChatsPage = ({ connectToChatsSocket }) => {
     return (
         <section className={styles['chats-page']}>
             <Route exact path={[`${path}`, `${path}/:chatId`]}>
-                <ConnectedChatsList />
+                <SideBar />
             </Route>
             <Switch>
                 <Route exact path={`${path}`}>
