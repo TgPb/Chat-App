@@ -6,7 +6,7 @@ import UserIconWithStatus from "../UserIconWithStatus/UserIconWithStatus.compone
 import ChatControlPanel from "../ChatControlPanel/ChatControlPanel.component";
 
 const ChatWindowHeader = ({ chatInfo = {} }) => {
-    const { name, description, isOnline, icon } = chatInfo;
+    const { name, description, isOnline, icon, _id } = chatInfo;
     console.log(icon)
     return (
         <header className={styles['chat-window-header']}>
@@ -25,7 +25,7 @@ const ChatWindowHeader = ({ chatInfo = {} }) => {
                     { description }
                 </span>
             </div>
-            <ChatControlPanel className={styles['header__control-panel']} />
+            <ChatControlPanel chatId={_id} className={styles['header__control-panel']} />
         </header>
     );
 };
