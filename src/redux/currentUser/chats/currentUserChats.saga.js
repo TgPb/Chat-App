@@ -66,6 +66,18 @@ function createChatsSocketChannel(socket) {
             emit(participantOffline({ _id }));
         }
 
+        const chatsFetchErrorHandler = () => {
+            alert('Error during fetching chats. Please, reload the page and try again');
+        }
+
+        const createChatErrorHandler = () => {
+            alert('Error during creating chat. Please, reload the page and try again');
+        }
+
+        const sendMessageErrorHandler = () => {
+            alert('Error during sending message. Please, try again');
+        }
+
         socket.on(chatsNamespaceEvents.CONNECT, connectHandler);
 
         socket.on(chatsNamespaceEvents.CHATS_FETCH_SUCCESS, chatsFetchSuccessHandler);
@@ -77,6 +89,12 @@ function createChatsSocketChannel(socket) {
         socket.on(chatsNamespaceEvents.PARTICIPANT_ONLINE, participantOnlineHandler);
 
         socket.on(chatsNamespaceEvents.PARTICIPANT_OFFLINE, participantOfflineHandler);
+
+        socket.on(chatsNamespaceEvents.CHATS_FETCH_ERROR, chatsFetchErrorHandler);
+
+        socket.on(chatsNamespaceEvents.CREATE_CHAT_ERROR, createChatErrorHandler);
+
+        socket.on(chatsNamespaceEvents.SEND_MESSAGE_ERROR, sendMessageErrorHandler);
 
         return () => {
             socket.close();
@@ -204,8 +222,8 @@ function* externalChatsEventsWatcher(socket, channel) {
                     break;
             }
         } catch (e) {
-            console.log({e})
-            // eventChannel.close();
+            channel.close();
+            alert('Something went wrong. Try to update the page');
         }
     }
 }
