@@ -4,6 +4,11 @@ import { selectUsers } from '../users/users.selectors';
 
 export const selectCurrentUser = state => state.currentUser;
 
+export const selectCurrentUserInvite = createSelector(
+    [selectCurrentUser],
+    currentUser => currentUser.invite
+);
+
 export const selectCurrentUserAuthState = createSelector(
     [selectCurrentUser],
     currentUser => currentUser.auth

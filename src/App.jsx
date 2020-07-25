@@ -9,6 +9,7 @@ import {ConnectedOnlyForAuthenticated} from "./hocs/OnlyForAuthenticated/OnlyFor
 import {ConnectedChatsPage} from "./pages/ChatsPage/ChatsPage.containers";
 
 import {currentUserSignInWithToken} from "./redux/currentUser/auth/data/currentUserAuthData.actions";
+import {ConnectedInvitePage} from "./pages/InvitePage/InvitePage.containers";
 
 const App = ({ signInWithToken }) => {
     const history = useHistory();
@@ -31,6 +32,7 @@ const App = ({ signInWithToken }) => {
     return (
         <div className="App">
             <Switch>
+                <Route exact path={`/invite/:invite`} component={ConnectedInvitePage} />
                 <Route path='/auth'>
                     <ConnectedAuthPage />
                 </Route>

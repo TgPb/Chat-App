@@ -1,0 +1,19 @@
+$mainColor: rgb(37, 29, 67);
+
+.invite-generator {
+	position: relative;
+
+	.generator {
+		&__label {
+			color: $mainColor;
+			opacity: .6;
+			font-size: 16px;
+			transition: .2s linear;
+			font-weight: 600;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+}
