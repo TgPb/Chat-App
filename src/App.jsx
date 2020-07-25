@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import { Switch, Route, useRouteMatch, useHistory } from 'react-router-dom';
+import {connect} from "react-redux";
 
-import ChatsPage from "./pages/ChatsPage/ChatsPage.page";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage.page";
 
 import {ConnectedAuthPage} from "./pages/AuthPage/AuthPage.containers";
 import {ConnectedOnlyForAuthenticated} from "./hocs/OnlyForAuthenticated/OnlyForAuthenticated.containers";
-import {connect} from "react-redux";
+import {ConnectedChatsPage} from "./pages/ChatsPage/ChatsPage.containers";
+
 import {currentUserSignInWithToken} from "./redux/currentUser/auth/data/currentUserAuthData.actions";
 
 const App = ({ signInWithToken }) => {
@@ -35,7 +36,7 @@ const App = ({ signInWithToken }) => {
                 </Route>
                 <Route path='/chats'>
                     <ConnectedOnlyForAuthenticated>
-                        <ChatsPage />
+                        <ConnectedChatsPage />
                     </ConnectedOnlyForAuthenticated>
                 </Route>
                 <Route path='*'>

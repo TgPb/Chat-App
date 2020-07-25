@@ -29,14 +29,14 @@ function* userSignInHandler({ payload }) {
         );
 
         const { data: { token, user } } = response;
-        const { id, name, surname, icon } = user;
+        const { _id, name, surname, icon } = user;
 
         localStorage.setItem('token', token);
 
-        yield put(currentUserSignInSuccess({ id, token }));
+        yield put(currentUserSignInSuccess({ _id, token }));
 
         yield put(setUserInfo({
-            id,
+            _id,
             name,
             surname,
             icon
@@ -121,29 +121,30 @@ function* userSignInWithTokenHandler() {
 
         const token = localStorage.getItem('token');
 
-        if (!token) return;
-
-        const response = yield axios.post(
-            '/auth/signin/token',
-            null,
-            {
-                headers: {
-                    authorization: `Bearer ${token}`
+        if (token) {
+            const response = yield axios.post(
+                '/auth/signin/token',
+                null,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
-        const { data: { user } } = response;
-        const { id, name, surname, icon } = user;
+            const { data: { user } } = response;
+            const { _id, name, surname, icon } = user;
 
-        yield put(currentUserSignInSuccess({ id, token }));
+            yield put(currentUserSignInSuccess({ _id, token }));
 
-        yield put(setUserInfo({
-            id,
-            name,
-            surname,
-            icon
-        }));
+            yield put(setUserInfo({
+                _id,
+                name,
+                surname,
+                icon
+            }));
+        }
+
 
         yield put(resetCurrentUserAuthLoading());
     } catch (e) {

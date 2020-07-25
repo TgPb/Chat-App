@@ -12,14 +12,16 @@ const ChatPreviewInfo = ({ className, name, lastMessage = {} }) => {
 
     useEffect(
         () => {
-            const interval = setInterval(
-                () => {
-                    setFormattedDate(timeDistanceToNowInWords(date));
-                },
-                1000
-            );
-            return () => {
-                clearInterval(interval);
+            if (date) {
+                const interval = setInterval(
+                    () => {
+                        setFormattedDate(timeDistanceToNowInWords(date));
+                    },
+                    1000
+                );
+                return () => {
+                    clearInterval(interval);
+                }
             }
         },
         [date]

@@ -1,9 +1,9 @@
 import {currentUserChatsLoadingTypes} from "./currentUserChatsLoading.types";
 
-export const setCurrentUserAuthLoading = () => ({
+export const setCurrentUserChatsLoading = () => ({
     type: currentUserChatsLoadingTypes.SET_USER_CHATS_LOADING,
 });
 
-export const resetCurrentUserAuthLoading = () => ({
+export const resetCurrentUserChatsLoading = () => ({
     type: currentUserChatsLoadingTypes.RESET_USER_CHATS_LOADING,
 });

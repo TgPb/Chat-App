@@ -11,14 +11,44 @@ $secondaryColor: #fff;
 	font-size: 14px;
 	font-weight: 600;
 	border-radius: 7px;
-	border: 1px solid $mainColor;
-	background: $mainColor;
-	color: $secondaryColor;
 	transition: .2s linear;
 	user-select: none;
 	cursor: pointer;
 
+
 	$button: &;
+
+	&_default {
+		color: $secondaryColor;
+		border: 1px solid $mainColor;
+		background: $mainColor;
+
+		&:focus,
+		&:hover {
+			color: $mainColor;
+			background: $secondaryColor;
+
+			#{$button}__loader {
+				border-top-color: $mainColor;
+			}
+		}
+	}
+
+	&_white {
+		border: 1px solid $secondaryColor;
+		background: $secondaryColor;
+		color: $mainColor;
+
+		&:focus,
+		&:hover {
+			color: $secondaryColor;
+			background: $mainColor;
+
+			#{$button}__loader {
+				border-top-color: $secondaryColor;
+			}
+		}
+	}
 
 	&__loader {
 		display: inline-block;
@@ -31,16 +61,6 @@ $secondaryColor: #fff;
 	&_loading {
 		.button__loader {
 			animation: loaderAppear .35s forwards, loaderSpin .7s linear infinite;
-		}
-	}
-
-	&:focus,
-	&:hover {
-		color: $mainColor;
-		background: $secondaryColor;
-
-		#{$button}__loader {
-			border-top-color: $mainColor;
 		}
 	}
 

@@ -1,41 +1,43 @@
 import {usersTypes} from "./users.types";
 
-const DEFAULT_STATE = {
-    1: {
-        id: '1',
-        name: 'Vladimir',
-        surname: 'Makeev',
-        isOnline: true
-    },
-    2: {
-        id: '2',
-        name: 'Kevin',
-        surname: 'Thomson',
-        isOnline: true
-    },
-    3: {
-        id: '3',
-        name: 'Dmitry',
-        surname: 'Shirshov',
-        isOnline: false
-    }
-};
+const DEFAULT_STATE = {};
 
 export const usersReducer = (state = DEFAULT_STATE, action) => {
     const {type, payload} = action;
 
     switch (type) {
         case usersTypes.SET_USER_INFO:
-            const { id, name, surname, icon, isOnline } = payload;
+            const { _id, name, surname, icon } = payload;
 
             return {
                 ...state,
-                [id]: {
-                    id,
+                [_id]: {
+                    _id,
                     name,
                     surname,
                     icon,
-                    isOnline
+                }
+            };
+
+        case usersTypes.SET_USER_ONLINE:
+            const { _id: onlineUserId } = payload;
+
+            return {
+                ...state,
+                [onlineUserId]: {
+                    ...state[onlineUserId],
+                    isOnline: true
+                }
+            };
+
+        case usersTypes.SET_USER_OFFLINE:
+            const { _id: offlineUserId } = payload;
+
+            return {
+                ...state,
+                [offlineUserId]: {
+                    ...state[offlineUserId],
+                    isOnline: false
                 }
             };
 

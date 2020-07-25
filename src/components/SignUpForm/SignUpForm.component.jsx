@@ -76,8 +76,6 @@ const SignUpForm = ({ signUpStart, loading }) => {
         icon: ''
     });
 
-    console.log(state.icon)
-
     const handleSubmit = useCallback(
         e => {
             e.preventDefault();
@@ -198,7 +196,7 @@ const SignUpForm = ({ signUpStart, loading }) => {
                 file={state.icon ? state.icon.name : ''}
                 id='icon'
                 name='icon'
-                label='Upload icon'
+                label='Upload jpg icon'
                 onChange={handleFileSelect}
                 className={styles['form__input']}
             />

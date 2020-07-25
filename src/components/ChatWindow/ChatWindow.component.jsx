@@ -1,17 +1,17 @@
 import React from 'react';
 
 import styles from './ChatWindow.module.scss';
-import ChatWindowHeader from "../ChatWindowHeader/ChatWindowHeader.component";
-import MessageSender from "../MessageSender/MessageSender.component";
 
 import {ConnectedChatMessagesHistory} from "../ChatMessagesHistory/ChatMessagesHistory.containers";
+import {ConnectedChatWindowHeader} from "../ChatWindowHeader/ChatWindowHeader.containers";
+import {ConnectedMessageSender} from "../MessageSender/MessageSender.containers";
 
 const ChatWindow = ({ match: { params : { chatId }} }) => {
     return (
         <div className={styles['chat-window']}>
-            <ChatWindowHeader />
+            <ConnectedChatWindowHeader chatId={chatId} />
             <ConnectedChatMessagesHistory chatId={chatId} />
-            <MessageSender />
+            <ConnectedMessageSender chatId={chatId} />
         </div>
     );
 };

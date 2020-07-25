@@ -19,6 +19,13 @@ const useFormWithValidation = defaultState => {
         [fields]
     );
 
+    const handleReset = useCallback(
+        () => {
+            setFields(defaultState);
+        },
+        [defaultState]
+    );
+
     const validateInput = useCallback(
         fieldName => {
             const { errors } = fields[fieldName].validation(fields, fieldName);
@@ -37,12 +44,15 @@ const useFormWithValidation = defaultState => {
     const validateForm = useCallback(
         () => Object.entries(fields).reduce(
             (acc, [name, field]) => {
-                const { errors } = field.validation(fields, name);
+                if (field.validation) {
+                    const { errors } = field.validation(fields, name);
 
-                return [
-                    ...acc,
-                    ...errors
-                ];
+                    return [
+                        ...acc,
+                        ...errors
+                    ];
+                }
+                return acc;
             },
             []
         ),
@@ -53,7 +63,8 @@ const useFormWithValidation = defaultState => {
         fields,
         handleChange,
         validateForm,
-        validateInput
+        validateInput,
+        handleReset
     }
 };
 

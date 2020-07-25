@@ -13,16 +13,14 @@ const Message = ({ message }) => {
 
     const { icon, name, surname } = from;
 
-    const [dateData, setDateData] = useState(formatDate(date));
-
-    const { formattedDate, needUpdate } = dateData;
+    const [formattedDate, setFormattedDate] = useState(formatDate(date));
 
     useEffect(
         () => {
-            if (!isSystem && needUpdate) {
+            if (!isSystem) {
                 const interval = setTimeout(
                     () => {
-                        setDateData(formatDate(date));
+                        setFormattedDate(formatDate(date));
                     },
                     1000
                 );
@@ -31,7 +29,7 @@ const Message = ({ message }) => {
                 }
             }
         },
-        [date, needUpdate, isSystem]
+        [date, isSystem]
     );
 
     const messageStyles = classNames(

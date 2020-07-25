@@ -1,60 +1,36 @@
 import {chatsTypes} from "./chats.types";
 
-const DEFAULT_STATE = {
-    1: {
-        id: '1',
-        name: 'Beerfest',
-        description: 'Ideas about the weekend party',
-        participants: ['1', '2', '3'],
-        messages: [
-            {
-                text: 'Vladimir Makeev invited Kevin Thomson',
-                date: 'Tue Feb 11 2014 01:24:00',
-                isSystem: true
-            }, {
-                from: '1',
-                text: 'Hello',
-                date: 'Tue Feb 11 2014 01:25:00'
-            }, {
-                from: '2',
-                text: 'Hi',
-                date: 'Tue Feb 11 2014 01:26:00'
-            }
-        ]
-    },
-    2: {
-        id: '2',
-        isPrivate: true,
-        participants: ['1', '3'],
-        messages: [
-            {
-                from: '5f195e0ebb78c596433ee90d',
-                text: 'Hello',
-                date: 'Tue Feb 11 2014 01:25:00'
-            }, {
-                from: '3',
-                text: 'Hi',
-                date: 'Tue Feb 11 2014 01:26:00'
-            }
-        ]
-    }
-};
+const DEFAULT_STATE = {};
 
 export const chatsReducer = (state = DEFAULT_STATE, action) => {
     const { type, payload } = action;
 
     switch (type) {
         case chatsTypes.SET_CHAT_INFO:
-            const { id, participants, messages, name, description, isPrivate } = payload;
+            const { _id, participantsIds, messages, name, description, icon } = payload;
             return {
                 ...state,
-                [id]: {
-                    id,
-                    participants,
+                [_id]: {
+                    _id,
+                    participants: [...participantsIds],
                     messages,
                     name,
                     description,
-                    isPrivate
+                    icon
+                }
+            };
+
+        case chatsTypes.ADD_NEW_MESSAGE:
+            const { to, message } = payload;
+
+            return {
+                ...state,
+                [to]: {
+                    ...state[to],
+                    messages: [
+                        ...state[to].messages,
+                        message
+                    ]
                 }
             };
 

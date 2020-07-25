@@ -5,9 +5,10 @@ import styles from './Button.module.scss';
 
 import {Link} from "react-router-dom";
 
-const Button = ({ onCLick = ()=>{}, className, loading, tag: Tag = 'div', href, children, ...otherProps }) => {
+const Button = ({ onCLick = ()=>{}, color = 'default', className, loading, tag: Tag = 'div', href, children, ...otherProps }) => {
     const buttonStyles = classNames(
         styles['button'],
+        styles[`button_${color}`],
         {
             [styles['button_loading']]: loading
         },

@@ -1,7 +1,7 @@
 export const normalizeData = data => data.reduce(
     (acc, item) => ({
         ...acc,
-        [item.id]: {
+        [item._id]: {
             ...item
         }
     }),

@@ -7,11 +7,11 @@ export const currentUserAuthDataReducer = (state = DEFAULT_STATE, action) => {
 
     switch (type) {
         case currentUserAuthDataTypes.USER_SIGN_IN_SUCCESS:
-            const { id, token } = payload;
+            const { _id, token } = payload;
 
             return {
                 ...state,
-                id,
+                _id,
                 token
             };
 

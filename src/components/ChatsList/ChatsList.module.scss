@@ -11,9 +11,17 @@ $bgColor: rgb(37, 29, 67);
 	align-items: center;
 	padding: 20px 0;
 
-	.list__no-chats-warning {
-		padding: 10px;
-		text-align: center;
-		user-select: none;
+	.list {
+		&__no-chats-warning {
+			padding: 10px;
+			text-align: center;
+			user-select: none;
+		}
+
+		&__btn-create {
+			margin-bottom: 15px;
+			width: 90%;
+			text-align: center;
+		}
 	}
 }

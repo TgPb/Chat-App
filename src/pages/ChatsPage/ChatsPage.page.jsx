@@ -1,16 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 
 import styles from './ChatsPage.module.scss';
 
 import NotFoundPage from "../NotFoundPage/NotFoundPage.page";
+
 import NoChatSelectedWindow from "../../components/NoChatSelectedWindow/NoChatSelectedWindow.component";
 import ChatWindow from "../../components/ChatWindow/ChatWindow.component";
 
 import {ConnectedChatsList} from "../../components/ChatsList/ChatsList.containers";
+import {ConnectedCreateChatWindow} from "../../components/CreateChatWindow/CreateChatWindow.containers";
 
-const ChatsPage = () => {
+const ChatsPage = ({ connectToChatsSocket }) => {
     const { path } = useRouteMatch();
+
+    useEffect(
+        () => {
+            connectToChatsSocket();
+        },
+        [connectToChatsSocket]
+    );
 
     return (
         <section className={styles['chats-page']}>
@@ -20,6 +29,9 @@ const ChatsPage = () => {
             <Switch>
                 <Route exact path={`${path}`}>
                     <NoChatSelectedWindow />
+                </Route>
+                <Route exact path={`${path}/create`}>
+                    <ConnectedCreateChatWindow />
                 </Route>
                 <Route exact path={`${path}/:chatId`} component={ChatWindow} />
                 <Route path='*'>

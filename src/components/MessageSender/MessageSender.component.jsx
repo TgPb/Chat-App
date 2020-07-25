@@ -6,7 +6,7 @@ import { ReactComponent as SendIcon } from '../../assets/img/send-icon.svg';
 
 import MessageInput from "../MessageInput/MessageInput.component";
 
-const MessageSender = () => {
+const MessageSender = ({ chatId, sendMessage }) => {
     const [message, setMessage] = useState('');
 
     const inputRef = useRef(null);
@@ -20,12 +20,12 @@ const MessageSender = () => {
             e.preventDefault();
             if (message) {
                 const trimmed = message.trim();
-                console.log('submit', {trimmed});
+                sendMessage({ to: chatId, text: trimmed });
                 inputRef.current.innerText = '';
                 setMessage('');
             }
         },
-        [message]
+        [message, chatId, sendMessage]
     );
 
     return (

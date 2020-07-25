@@ -29,7 +29,7 @@ $mainColor: rgba(37, 29, 67, 1);
 	}
 
 	&__file-name {
-		max-width: 50%;
+		flex: 1;
 		margin-left: 10px;
 		white-space: nowrap;
 		overflow: hidden;

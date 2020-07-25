@@ -16,7 +16,7 @@ export const selectCurrentUserAuthData = createSelector(
 
 export const selectCurrentUserId = createSelector(
     [selectCurrentUserAuthData],
-    data => data.id
+    data => data._id
 );
 
 export const selectCurrentUserToken = createSelector(

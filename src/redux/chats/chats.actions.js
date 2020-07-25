@@ -1,13 +1,21 @@
 import {chatsTypes} from "./chats.types";
 
-export const setChatInfo = ({ id, participants, messages, name, description, isPrivate }) => ({
+export const setChatInfo = ({ _id, participantsIds, messages, name, description, icon }) => ({
     type: chatsTypes.SET_CHAT_INFO,
     payload: {
-        id,
-        participants,
+        _id,
+        participantsIds,
         messages,
         name,
         description,
-        isPrivate
+        icon
+    }
+});
+
+export const addNewMessageToHistory = ({ to, message }) => ({
+    type: chatsTypes.ADD_NEW_MESSAGE,
+    payload: {
+        to,
+        message
     }
 });
